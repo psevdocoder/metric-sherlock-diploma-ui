@@ -55,6 +55,34 @@ npm run dev
 npm run build
 ```
 
+## Docker
+
+Контейнер генерирует `runtime-config.js` при старте, поэтому `VITE_*` можно менять через `.env` или `environment:` без пересборки образа.
+
+1. Собрать и запустить контейнер:
+
+```bash
+docker compose up --build -d
+```
+
+2. Открыть UI:
+
+```text
+http://localhost:4500
+```
+
+3. Остановить контейнер:
+
+```bash
+docker compose down
+```
+
+Если меняются `VITE_API_BASE_URL`, `VITE_KEYCLOAK_URL` или другие `VITE_*` переменные, достаточно перезапустить контейнер:
+
+```bash
+docker compose up -d
+```
+
 ## Важная настройка grpc-gateway
 
 Поле `VITE_API_REQUEST_CASE` управляет тем, в каком формате отправляются JSON-ключи в `PUT` запросах:
